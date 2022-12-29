@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar } from '../../../widgets/NavBar';
+import { NavBar } from '../NavBar';
 
 interface LayoutProps extends React.PropsWithChildren {}
 

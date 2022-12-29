@@ -1,5 +1,6 @@
 import { config } from '@keystone-6/core';
-import { Post, User } from './schems';
+import { Post } from './schema';
+import { User } from './schemas/users/user';
 
 const dbUrl =
   process.env.DATABASE_URL ||

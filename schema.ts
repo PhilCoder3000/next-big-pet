@@ -24,19 +24,3 @@ export const Post = list({
     },
   },
 });
-
-export const User = list({
-  fields: {
-    name: text({ validation: { isRequired: true } }),
-    email: text({ validation: { isRequired: true }, isIndexed: 'unique' }),
-    password: password(),
-  },
-  access: {
-    operation: {
-      query: () => true,
-      create: isAdmin,
-      update: isAdmin,
-      delete: isAdmin,
-    },
-  },
-});
