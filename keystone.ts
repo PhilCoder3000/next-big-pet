@@ -1,18 +1,21 @@
 import { config } from '@keystone-6/core';
-import { Post } from './schema';
-import { User } from './schemas/users/user';
+import { lists } from './src/keystone/schema';
+import { withAuth, session } from './src/keystone/auth';
+import { seedDemoData } from './src/keystone/seed';
+import type { Context } from '.keystone/types';
 
-const dbUrl =
-  process.env.DATABASE_URL ||
-  `postgres://${process.env.USER}@prisma-keystone-workshop`;
+const dbFilePath = `${process.cwd()}/keystone.db`;
 
-export default config({
-  db: {
-    provider: 'sqlite',
-    url: 'file:./keystone.db',
-  },
-  experimental: {
-    generateNextGraphqlAPI: true,
-  },
-  lists: { Post, User },
-});
+export default withAuth(
+  config({
+    db: {
+      provider: 'sqlite',
+      url: `file:${dbFilePath}`,
+      onConnect: async (context: Context) => {
+        await seedDemoData(context);
+      },
+    },
+    lists,
+    session,
+  })
+);

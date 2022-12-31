@@ -87,9 +87,10 @@ input PostCreateInput {
 
 type User {
   id: ID!
-  name: String
   email: String
+  nickname: String
   password: PasswordState
+  isAdmin: Boolean
 }
 
 type PasswordState {
@@ -106,25 +107,33 @@ input UserWhereInput {
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
   id: IDFilter
-  name: StringFilter
   email: StringFilter
+  nickname: StringFilter
   password: PasswordFilter
+  isAdmin: BooleanFilter
 }
 
 input PasswordFilter {
   isSet: Boolean!
 }
 
+input BooleanFilter {
+  equals: Boolean
+  not: BooleanFilter
+}
+
 input UserOrderByInput {
   id: OrderDirection
-  name: OrderDirection
   email: OrderDirection
+  nickname: OrderDirection
+  isAdmin: OrderDirection
 }
 
 input UserUpdateInput {
-  name: String
   email: String
+  nickname: String
   password: String
+  isAdmin: Boolean
 }
 
 input UserUpdateArgs {
@@ -133,9 +142,10 @@ input UserUpdateArgs {
 }
 
 input UserCreateInput {
-  name: String
   email: String
+  nickname: String
   password: String
+  isAdmin: Boolean
 }
 
 """

@@ -1,6 +1,8 @@
-/** @type {import('next').NextConfig} */
-const { withKeystone } = require("@keystone-6/core/next");
+const nextConfig = {
+  webpack: config => {
+    config.externals = [...(config.externals || []), '.prisma/client'];
+    return config;
+  },
+};
 
-module.exports = withKeystone({
- reactStrictMode: true,
-});
+module.exports = nextConfig;
