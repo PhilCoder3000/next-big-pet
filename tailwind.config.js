@@ -13,6 +13,7 @@ module.exports = {
         light: {
           primary: '#3786FB',
           secondary: '#E6F1FF',
+          grey: '#CCCDD0',
         },
       },
       textColor: {

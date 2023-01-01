@@ -12,16 +12,10 @@ generator client {
   output   = "node_modules/.prisma/client"
 }
 
-model Post {
-  id          String @id @default(cuid())
-  title       String @default("")
-  description String @default("")
-}
-
 model User {
   id       String  @id @default(cuid())
+  name     String  @default("")
   email    String  @unique @default("")
-  nickname String  @default("")
-  password String?
+  password String
   isAdmin  Boolean @default(false)
 }

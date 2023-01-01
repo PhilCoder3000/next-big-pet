@@ -2,32 +2,30 @@ import React, { useState, useRef, useEffect } from 'react';
 import { gql } from 'graphql-request';
 import { Auth } from '../../features/Auth/Auth';
 import { ChangeTheme } from '../../features/ChangeTheme';
-import { client } from '../../keystone/requests';
+import { graphqlClient } from '../../shared/graphql/client';
 
 interface NavBarProps {
   uuid?: string;
 }
 
 export function NavBar({ uuid }: NavBarProps) {
-  return <Header />
-  // return (
-  //   <header className="w-full py-2 flex items-center justify-end px-5 shadow-md dark:bg-dark-secondary">
-  //     <Auth />
-  //     <ChangeTheme />
-  //   </header>
-  // );
+  return (
+    <header className="w-full py-2 flex items-center justify-end px-5 shadow-md dark:bg-dark-secondary">
+      <Auth />
+      <ChangeTheme />
+    </header>
+  );
 }
 
 function Header() {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<{ name: string } | null>(null);
-  console.log('🚀 ~ file: NavBar.tsx:24 ~ Header ~ user', user);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     getCurrentLoggedInUser()
-      .then(data => {
+      .then((data) => {
         if (data?.authenticatedItem?.id) {
           setUser(data.authenticatedItem);
         }
@@ -40,8 +38,6 @@ function Header() {
   const login = () => {
     
     if (emailRef.current && passwordRef.current) {
-      console.log('🚀 ~ file: NavBar.tsx:26 ~ Header ~ emailRef', emailRef.current?.value);
-      console.log('🚀 ~ file: NavBar.tsx:28 ~ Header ~ passwordRef', passwordRef.current?.value);
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
 
@@ -105,7 +101,7 @@ function authenticateUser({ email, password }: { email: string; password: string
   `;
 
   // session token is automatically saved to cookie
-  return client.request(mutation, {
+  return graphqlClient.request(mutation, {
     email: email,
     password: password,
   });
@@ -118,7 +114,7 @@ function endUserSession() {
     }
   `;
 
-  return client.request(mutation);
+  return graphqlClient.request(mutation);
 }
 
 function getCurrentLoggedInUser() {
@@ -135,5 +131,5 @@ function getCurrentLoggedInUser() {
   `;
 
   // session token is automatically accessed from cookie
-  return client.request(query);
+  return graphqlClient.request(query);
 }

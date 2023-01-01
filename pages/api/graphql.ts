@@ -1,6 +1,6 @@
 import { createYoga } from 'graphql-yoga';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { keystoneContext } from '../../src/keystone/context';
+import { keystoneContext } from '../../keystone/context/context';
 
 export const config = {
   api: {

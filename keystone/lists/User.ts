@@ -1,13 +1,14 @@
 import { list } from '@keystone-6/core';
+import { allowAll } from '@keystone-6/core/access';
 import { checkbox, password, text } from '@keystone-6/core/fields';
 import { Session } from '../types';
 
 type UserData = {
-  id: string;
+  // id: string;
   name: string;
-  email: string;
-  password: string;
-  isAdmin: boolean;
+  // email: string;
+  // password: string;
+  // isAdmin: boolean;
 };
 
 const isAdmin = ({ session }: { session: Session }) => session?.data.isAdmin;
@@ -22,17 +23,7 @@ const isAdminOrPerson = ({ session, item }: any) =>
   isAdmin({ session }) || isPerson({ session, item });
 
 export const User = list({
-  access: {
-    operation: {
-      query: () => true,
-      create: isAdmin,
-      update: isPerson,
-      delete: isAdmin,
-    },
-    item: {
-      update: isAdminOrPerson,
-    },
-  },
+  access: allowAll,
   fields: {
     name: text(),
     email: text({
@@ -41,16 +32,11 @@ export const User = list({
         read: isAdminOrPerson,
       },
     }),
-    password: password({
-      access: {
-        read: isAdminOrPerson,
-        update: isPerson,
-      },
-    }),
+    password: password({ validation: { isRequired: true } }),
     isAdmin: checkbox({
       access: {
-        read: isUser,
-        update: isAdmin,
+        read: allowAll,
+        update: isUser,
       },
     }),
   },
