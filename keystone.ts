@@ -1,21 +1,13 @@
 import { config } from '@keystone-6/core';
-import { lists } from './src/keystone/schema';
-import { withAuth, session } from './src/keystone/auth';
-import { seedDemoData } from './src/keystone/seed';
-import type { Context } from '.keystone/types';
-
-const dbFilePath = `${process.cwd()}/keystone.db`;
+import { withAuth } from './keystone/auth/withAuth';
+import { keystoneLists } from './keystone/lists';
+import { keystoneSession } from './keystone/auth/sessions';
+import { keystoneDb } from './keystone/db';
 
 export default withAuth(
   config({
-    db: {
-      provider: 'sqlite',
-      url: `file:${dbFilePath}`,
-      onConnect: async (context: Context) => {
-        await seedDemoData(context);
-      },
-    },
-    lists,
-    session,
-  })
+    db: keystoneDb,
+    lists: keystoneLists,
+    session: keystoneSession,
+  }),
 );
