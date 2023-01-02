@@ -24,6 +24,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "graphql-yoga": "^3.2.1",
+    "lodash": "^4.17.21",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -31,6 +32,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "prisma": "^4.8.0",
