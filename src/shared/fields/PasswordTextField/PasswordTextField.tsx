@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BaseTextField, BaseTextFieldProps } from '../BaseTextField';
 import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri';
-import { classes } from '../../utils/classes';
+import { classes } from '../../../helpers/style/classes';
 
 interface PasswordTextFieldProps extends BaseTextFieldProps {}
 

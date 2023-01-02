@@ -1,9 +1,9 @@
 import { gql } from 'graphql-request';
 import React, { useEffect, useState } from 'react';
-import { AuthButton } from '../../shared/buttons/AuthButton';
 import { AuthDialog } from '../../shared/dialogs/AuthDialog';
-import { graphqlClient } from '../../shared/graphql/client';
-import { Portal } from '../../shared/reactHelpers/Portal';
+import { graphqlClient } from '../../helpers/graphql/client';
+import { Portal } from '../../helpers/react/Portal';
+import { BaseButton } from '../../shared/buttons/BaseButton';
 
 interface AuthProps {
   uuid?: string;
@@ -54,9 +54,9 @@ export function Auth({ uuid }: AuthProps) {
 
   return (
     <>
-      <AuthButton color="primary" onClick={() => setOpen(true)}>
+      <BaseButton color="primary" onClick={() => setOpen(true)}>
         Auth
-      </AuthButton>
+      </BaseButton>
       <Portal>
         <AuthDialog
           isOpen={isOpen}

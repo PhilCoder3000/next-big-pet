@@ -1,5 +1,5 @@
 import React from 'react';
-import { classes } from '../../utils/classes';
+import { classes } from '../../../helpers/style/classes';
 
 type Color = 'primary' | 'secondary';
 

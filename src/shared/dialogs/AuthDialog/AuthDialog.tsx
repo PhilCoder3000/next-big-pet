@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { classes } from '../../../helpers/style/classes';
 import { BaseButton } from '../../buttons/BaseButton';
 import { BaseTextField } from '../../fields/BaseTextField';
 import { PasswordTextField } from '../../fields/PasswordTextField';
-import { classes } from '../../utils/classes';
 import { BaseDialog, BaseDialogProps } from '../BaseDialog';
 
 interface AuthDialogProps extends BaseDialogProps {

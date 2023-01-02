@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useLocalStorage } from '../../shared/browserApiHelpers/hooks';
 import { IconButton } from '../../shared/buttons/IconButton';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
+import { useLocalStorage } from '../../helpers/browserApi/hooks';
 
 type Theme = 'light' | 'dark';
 

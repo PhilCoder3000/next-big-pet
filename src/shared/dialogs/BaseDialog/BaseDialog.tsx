@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { classes } from '../../utils/classes';
+import { classes } from '../../../helpers/style/classes';
 
 export interface BaseDialogProps
   extends React.PropsWithChildren,

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { gql } from 'graphql-request';
 import { Auth } from '../../features/Auth/Auth';
 import { ChangeTheme } from '../../features/ChangeTheme';
-import { graphqlClient } from '../../shared/graphql/client';
+import { graphqlClient } from '../../helpers/graphql/client';
 
 interface NavBarProps {
   uuid?: string;
