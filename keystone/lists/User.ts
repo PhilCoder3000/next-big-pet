@@ -25,14 +25,18 @@ const isAdminOrPerson = ({ session, item }: any) =>
 export const User = list({
   access: allowAll,
   fields: {
-    name: text(),
+    name: text({
+      validation: { isRequired: true },
+      access: allowAll,
+    }),
     email: text({
+      validation: { isRequired: true },
       isIndexed: 'unique',
       access: {
         read: isAdminOrPerson,
       },
     }),
-    password: password({ validation: { isRequired: true } }),
+    password: password({ validation: { isRequired: true }, access: isPerson }),
     isAdmin: checkbox({
       access: {
         read: allowAll,

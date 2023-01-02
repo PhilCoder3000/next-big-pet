@@ -28,7 +28,10 @@ const PrimaryButton = ({
   <button
     {...buttonProps}
     type="button"
-    className={classes("rounded-md p-1 bg-light-primary dark:bg-dark-primary text-light-primary dark:text-dark-primary border border-light-primary dark:border-dark-primary", className)}
+    className={classes(
+      'rounded-md h-8 px-2 pb-1 bg-light-primary dark:bg-dark-primary text-light-primary dark:text-dark-primary border border-light-primary dark:border-dark-primary',
+      className,
+    )}
   >
     {children}
   </button>
@@ -42,7 +45,10 @@ const SecondaryButton = ({
   <button
     {...buttonProps}
     type="button"
-    className={classes("rounded-md p-1 bg-light-secondary dark:bg-dark-secondary text-light-secondary dark:text-dark-secondary border border-light-primary dark:border-dark-secondary", className)}
+    className={classes(
+      'rounded-md p-1 bg-light-secondary dark:bg-dark-secondary text-light-secondary dark:text-dark-secondary border border-light-primary dark:border-dark-secondary',
+      className,
+    )}
   >
     {children}
   </button>
