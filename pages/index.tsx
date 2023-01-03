@@ -47,3 +47,4 @@ function getUsers() {
 
   return graphqlClient.request<{ users: User[] }>(query);
 }
+

@@ -4,15 +4,21 @@ type ValidationRuleObject = { errorMessage: string };
 
 type ValidationRule = boolean | ValidationRuleObject;
 
-type Validation<T> = {
-  [key in keyof T]?: {
-    isRequired?: ValidationRule;
-    isEmail?: ValidationRule;
-  };
+type ValidationType = 'email';
+
+type ValidationParams = {
+  isRequired?: ValidationRule;
+  type: ValidationType;
 };
 
+type Validation<T> = {
+  [key in keyof T]?: ValidationParams;
+};
+
+type AllowedValue = string | number | boolean;
+
 interface InitialValue {
-  [key: string]: string | number | boolean;
+  [key: string]: AllowedValue;
 }
 
 type Errors = Record<keyof InitialValue, boolean | string>;
@@ -68,20 +74,52 @@ const validateValue = (
   let errors = {} as Errors;
   Object.keys(validation).forEach((key) => {
     const validationRules = validation[key]!;
+    const checkedValue = value[key];
+
     if (validationRules.isRequired) {
-      if (typeof value[key] === 'string') {
-        if ((value[key] as string).trim() === '') {
-          invalidName = invalidName || key;
-          if (typeof validationRules.isRequired === 'boolean') {
-            errors[key] = true;
-          } else {
-            errors[key] = validationRules.isRequired.errorMessage
-          }
-        }
+      const requiredErrors = requiredCheck(checkedValue, validationRules);
+      if (requiredErrors) {
+        invalidName = invalidName || key;
+        errors[key] = requiredErrors;
+      }
+    }
+
+    if (validationRules.type === 'email') {
+      const emailErrors = emailCheck(checkedValue)
+      if (emailErrors) {
+        invalidName = invalidName || key;
+        errors[key] = emailErrors;
       }
     }
   });
   return { isValid: !Object.keys(errors).length, invalidName, errors };
+};
+
+const requiredCheck = (
+  checkedValue: AllowedValue,
+  validationRules: ValidationParams,
+) => {
+  if (typeof checkedValue === 'string') {
+    if (checkedValue.trim() === '') {
+      if (typeof validationRules.isRequired === 'boolean') {
+        return true;
+      } else {
+        return validationRules.isRequired?.errorMessage;
+      }
+    }
+  }
+  return false
+};
+
+const emailCheck = (
+  checkedValue: AllowedValue,
+) => {
+  if (typeof checkedValue === 'string') {
+    if (checkedValue.toLowerCase().match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
+      return false;
+    } 
+  }
+  return 'incorrect email format'
 };
 
 const getDefaultErrors = (value: InitialValue) => {

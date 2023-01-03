@@ -1,0 +1,24 @@
+:root {
+  --dark-primary: #EFFF04;
+  --dark-secondary: #242424;
+  --dark-grey: #979797;
+
+  --light-primary: #3786FB;
+  --light-secondary: #E6F1FF;
+  --light-grey: #CCCDD0;
+
+  --dark-text-primary: #111111;
+  --dark-text-secondary: #979797;
+
+  --light-text-primary: #FFFFFF;
+  --light-text-secondary: #3786FB;
+  --light-text-hint: #4D515B;
+  --light-text-white: #FFFFFF;
+  --light-text-grey: #676A73;
+
+  --dark-bg-primary: #EFFF04;
+  --dark-bg-secondary: #242424;
+  
+  --light-bg-primary: #3786FB;
+  --light-bg-secondary: #FFFFFF;
+}

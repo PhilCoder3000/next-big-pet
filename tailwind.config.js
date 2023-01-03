@@ -6,37 +6,37 @@ module.exports = {
     extend: {
       colors: {
         dark: {
-          primary: '#EFFF04',
-          secondary: '#242424',
-          grey: '#979797'
+          primary: 'var(--dark-primary)',
+          secondary: 'var(--dark-secondary)',
+          grey: 'var(--dark-grey)'
         },
         light: {
-          primary: '#3786FB',
-          secondary: '#E6F1FF',
-          grey: '#CCCDD0',
+          primary: 'var(--light-primary)',
+          secondary: 'var(--light-secondary)',
+          grey: 'var(--light-grey)',
         },
       },
       textColor: {
         dark: {
-          primary: '#111111',
-          secondary: '#979797',
+          primary: 'var(--dark-text-primary)',
+          secondary: 'var(--dark-text-secondary)',
         },
         light: {
-          primary: '#FFFFFF',
-          secondary: '#3786FB',
-          hint: '#4D515B',
-          white: '#FFFFFF',
-          grey: '#676A73',
+          primary: 'var(--dark-text-primary)',
+          secondary: 'var(--dark-text-secondary)',
+          hint: 'var(--dark-text-hint)',
+          white: 'var(--dark-text-white)',
+          grey: 'var(--dark-text-grey)',
         },
       },
       backgroundColor: {
         dark: {
-          primary: '#EFFF04',
-          secondary: '#242424',
+          primary: 'var(--dark-bg-primary)',
+          secondary: 'var(--dark-bg-secondary)',
         },
         light: {
-          primary: '#3786FB',
-          secondary: '#FFFFFF',
+          primary: 'var(--light-bg-primary)',
+          secondary: 'var(--light-bg-secondary)',
         },
       },
     },
