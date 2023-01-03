@@ -37,7 +37,7 @@ export function AuthDialog(props: AuthDialogProps) {
       </div>
       <div
         className={classes(
-          'flex-grow border-2 p-2 border-light-primary dark:border-dark-primary rounded-b-md bg-white dark:bg-black',
+          'flex flex-col flex-grow border-2 p-2 border-light-primary dark:border-dark-primary rounded-b-md bg-white dark:bg-black',
           mode === 'Sign in' ? 'rounded-tr-md' : 'rounded-tl-md',
         )}
       >

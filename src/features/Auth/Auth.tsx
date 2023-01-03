@@ -26,8 +26,6 @@ export function Auth({ uuid }: AuthProps) {
       });
   }, []);
 
-
-
   return (
     <>
       <LoadingButton isLoading={isLoading} color="primary" onClick={() => setOpen(true)} className="mr-3">

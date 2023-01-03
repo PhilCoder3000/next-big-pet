@@ -3,14 +3,6 @@ import { allowAll } from '@keystone-6/core/access';
 import { checkbox, password, text } from '@keystone-6/core/fields';
 import { Session } from '../types';
 
-type UserData = {
-  // id: string;
-  name: string;
-  // email: string;
-  // password: string;
-  // isAdmin: boolean;
-};
-
 const isAdmin = ({ session }: { session: Session }) => session?.data.isAdmin;
 
 const isUser = ({ session }: { session: Session }) => !!session?.data.id;

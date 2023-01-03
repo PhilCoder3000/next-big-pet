@@ -12,7 +12,7 @@ type Validation<T> = {
 };
 
 interface InitialValue {
-  [key: string]: string | number;
+  [key: string]: string | number | boolean;
 }
 
 type Errors = Record<keyof InitialValue, boolean | string>;

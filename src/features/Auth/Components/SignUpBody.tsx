@@ -1,28 +1,41 @@
+import { User } from '@prisma/client';
 import React, { useState } from 'react';
+import { BaseButton } from '../../../shared/buttons/BaseButton';
 import { BaseTextField } from '../../../shared/fields/BaseTextField';
 import { PasswordTextField } from '../../../shared/fields/PasswordTextField';
+import { useForm } from '../../../shared/hooks/useForm';
+import { useSignUp } from '../hooks/useSingUp';
 
-interface SignUpBodyProps {
-  uuid?: string;
-}
+export type SignUpUser = Pick<User, 'name' | 'email' | 'password'>
 
-export function SignUpBody({ uuid }: SignUpBodyProps) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (name === 'name') {
-      setName(value);
-    }
-    if (name === 'email') {
-      setEmail(value);
-    }
-    if (name === 'password') {
-      setPassword(value);
-    }
-  };
+export function SignUpBody() {
+  const [isLoading, setLoading] = useState(false);
+
+  const { signUp } = useSignUp(setLoading)
+
+  const { value, errors, changeHandler, submitHandler } = useForm<SignUpUser>(
+    {
+      name: '',
+      email: '',
+      password: '',
+    },
+    signUp,
+    {
+      name: {
+        isRequired: true,
+      },
+      email: {
+        isRequired: true,
+      },
+      password: {
+        isRequired: true,
+      },
+    },
+  );
+  
+  const { name, email, password } = value;
+
   return (
     <>
       <BaseTextField
@@ -30,12 +43,14 @@ export function SignUpBody({ uuid }: SignUpBodyProps) {
         name="name"
         value={name}
         onChange={changeHandler}
+        className="mb-2"
       />
       <BaseTextField
         placeholder="email"
         name="email"
         value={email}
         onChange={changeHandler}
+        className="mb-2"
       />
       <PasswordTextField
         placeholder="password"
@@ -43,6 +58,9 @@ export function SignUpBody({ uuid }: SignUpBodyProps) {
         value={password}
         onChange={changeHandler}
       />
+      <BaseButton className="ml-auto mt-auto" onClick={submitHandler}>
+        Login
+      </BaseButton>
     </>
   );
 }
