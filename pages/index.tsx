@@ -1,6 +1,8 @@
+import { useStore } from 'effector-react';
 import { gql } from 'graphql-request';
 import React, { useState } from 'react';
 import { graphqlClient } from '../src/helpers/graphql/client';
+import { $counter } from '../src/models/user/init';
 import { BaseButton } from '../src/shared/buttons/BaseButton';
 
 type User = { id: string; name: string; isAdmin: boolean; email: null };
@@ -11,9 +13,12 @@ export default function Home() {
     const res = await getUsers();
     setUsers(res.users);
   };
+  const counter = useStore($counter)
+
   return (
     <div className="w-full h-full flex flex-col">
       <BaseButton onClick={update}>update</BaseButton>
+      <p>{counter}</p>
       <div>
         {users.map(({ id, name, isAdmin }) => (
           <div key={id}>

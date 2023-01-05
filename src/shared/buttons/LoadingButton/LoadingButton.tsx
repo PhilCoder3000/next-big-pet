@@ -16,16 +16,13 @@ export function LoadingButton({
   return (
     <BaseButton
       {...otherProps}
-      className={classes('relative', className, {
-        'text-opacity-0 dark:text-opacity-0 transition': !!isLoading,
-      })}
+      className={classes('relative', className)}
     >
       <div
         className={classes(
-          'absolute top-0 left-0 w-full h-full flex justify-center items-center z-10 transition',
+          'absolute top-0 left-0 w-full h-full flex justify-center items-center z-10 transition bg-inherit rounded opacity-100',
           '',
           {
-            'opacity-100': !!isLoading,
             'opacity-0': !isLoading,
           },
         )}

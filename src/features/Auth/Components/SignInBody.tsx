@@ -4,12 +4,15 @@ import { BaseButton } from '../../../shared/buttons/BaseButton';
 import { BaseTextField } from '../../../shared/fields/BaseTextField';
 import { PasswordTextField } from '../../../shared/fields/PasswordTextField';
 import { useForm } from '../../../shared/hooks/useForm';
+import { BaseSnackbar } from '../../../shared/snackbar/BaseSnackbar';
 import { useSignIn } from '../hooks/useSignIn';
 
-export type SignInUser = Pick<User, 'email' | 'password'>
+export type SignInUser = Pick<User, 'email' | 'password'>;
 
 export function SignInBody() {
-  const { signIn } = useSignIn();
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { signIn } = useSignIn(setLoading, setError);
 
   const { value, errors, changeHandler, submitHandler } = useForm<SignInUser>(
     { email: '', password: '' },
@@ -38,8 +41,9 @@ export function SignInBody() {
         onChange={changeHandler}
       />
       <BaseButton className="ml-auto mt-auto" onClick={submitHandler}>
-        Login
+        Sign in
       </BaseButton>
+      <BaseSnackbar text={error} />
     </>
   );
 }

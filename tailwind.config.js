@@ -22,11 +22,11 @@ module.exports = {
           secondary: 'var(--dark-text-secondary)',
         },
         light: {
-          primary: 'var(--dark-text-primary)',
-          secondary: 'var(--dark-text-secondary)',
-          hint: 'var(--dark-text-hint)',
-          white: 'var(--dark-text-white)',
-          grey: 'var(--dark-text-grey)',
+          primary: 'var(--light-text-primary)',
+          secondary: 'var(--light-text-secondary)',
+          hint: 'var(--light-text-hint)',
+          white: 'var(--light-text-white)',
+          grey: 'var(--light-text-grey)',
         },
       },
       backgroundColor: {

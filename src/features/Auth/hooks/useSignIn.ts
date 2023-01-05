@@ -2,13 +2,15 @@ import { gql } from 'graphql-request';
 import { graphqlClient } from '../../../helpers/graphql/client';
 import { SignInUser } from '../Components/SignInBody';
 
-export const useSignIn = () => {
-  const signIn = (values: SignInUser) => {
-    authenticateUser(values).then((data) => {
-      if (data?.authenticateUserWithPassword?.item?.id) {
-        window.location.reload();
-      }
-    });
+export const useSignIn = (setLoading: (arg: boolean) => void, setError: (arg: string) => void) => {
+  const signIn = async (values: SignInUser) => {
+    setLoading(true);
+    const data = await authenticateUser(values)    
+    if (data?.authenticateUserWithPassword?.item?.id) {
+      window.location.reload();
+    } else {
+      setError('wrong password')
+    } 
   };
 
   return { signIn };

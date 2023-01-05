@@ -59,7 +59,7 @@ export function SignUpBody() {
         onChange={changeHandler}
       />
       <BaseButton className="ml-auto mt-auto" onClick={submitHandler}>
-        Login
+        Sign up
       </BaseButton>
     </>
   );

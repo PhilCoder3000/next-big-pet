@@ -14,10 +14,7 @@ export const useSignUp = (setLoading: (arg: boolean) => void) => {
 function registerUser({ name, email, password }: SignUpUser) {
   const mutation = gql`
     mutation ($data: UserCreateInput!) {
-      createUser(data: $data) {
-        name
-        email
-      }
+      createUser(data: $data) {}
     }
   `;
 

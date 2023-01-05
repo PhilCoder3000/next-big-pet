@@ -8,7 +8,7 @@ type ValidationType = 'email';
 
 type ValidationParams = {
   isRequired?: ValidationRule;
-  type: ValidationType;
+  type?: ValidationType;
 };
 
 type Validation<T> = {
