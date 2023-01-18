@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BaseTextField, BaseTextFieldProps } from '../BaseTextField';
-import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri';
 import { classes } from '../../../helpers/style/classes';
 
 interface PasswordTextFieldProps extends BaseTextFieldProps {}
@@ -20,7 +19,7 @@ export function PasswordTextField({
     <div className="flex border rounded-md border-light-grey dark:border-dark-grey dark:bg-dark-secondary">
       <BaseTextField type={type} {...otherProps} className={classes('border-none', className)} />
       <button type="button" onClick={toggleType} className="w-6 text-light-secondary dark:text-dark-grey">
-        {type === 'password' ? <RiEyeCloseLine /> : <RiEyeLine />}
+        {/* {type === 'password' ? <RiEyeCloseLine /> : <RiEyeLine />} */}
       </button>
     </div>
   );

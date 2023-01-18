@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { classes } from '../../../helpers/style/classes';
+import Image from 'next/image';
 
 type Avatar = {
-  avatar: File,
-  url: string,
-}
+  avatar: File;
+  url: string;
+};
 
 export function AvatarUploader() {
   const [avatar, setAvatar] = useState<Avatar | null>(null);
@@ -25,16 +26,24 @@ export function AvatarUploader() {
       className={classes(
         'h-40 w-40 border rounded-full border-light-primary dark:border-dark-primary cursor-pointer bg-cover',
       )}
-      style={{ backgroundImage: avatar ? `url(${avatar.url})` : 'none'}}
       onClick={() => inputRef.current?.click()}
     >
-      <input
-        ref={inputRef}
-        type="file"
-        onChange={changeHandler}
-        accept="image/*"
-        className='hidden'
-      />
+      {avatar ? (
+        <Image
+          src={avatar.url}
+          height={100}
+          width={100}
+          alt='avatar'
+        />
+      ) : (
+        <input
+          ref={inputRef}
+          type="file"
+          onChange={changeHandler}
+          accept="image/*"
+          className="hidden"
+        />
+      )}
     </div>
   );
 }

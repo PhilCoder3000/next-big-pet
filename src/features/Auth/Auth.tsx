@@ -47,7 +47,7 @@ export function Auth() {
         onClick={() => setOpen(true)}
         className="mr-3"
       >
-        Auth
+        Login
       </LoadingButton>
       <Portal>
         <AuthDialog isOpen={isOpen} onClose={() => setOpen(false)} />

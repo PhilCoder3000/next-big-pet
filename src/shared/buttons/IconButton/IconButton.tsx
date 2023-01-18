@@ -26,7 +26,7 @@ const PrimaryIconButton = ({
   <button
     {...buttonProps}
     type="button"
-    className="rounded-full p-1 bg-light-primary dark:bg-dark-primary text-light-primary dark:text-dark-primary border border-light-primary"
+    className="rounded-full p-1 bg-light-primary dark:bg-dark-primary text-light-primary dark:text-dark-primary border border-light-primary overflow-hidden"
   >
     {children}
   </button>
@@ -39,7 +39,7 @@ const SecondaryIconButton = ({
   <button
     {...buttonProps}
     type="button"
-    className="rounded-full p-1 bg-light-secondary dark:bg-dark-secondary text-light-secondary dark:text-dark-secondary border border-light-primary dark:border-dark-grey"
+    className="rounded-full p-1 bg-light-secondary dark:bg-dark-secondary text-light-secondary dark:text-dark-secondary border border-light-primary dark:border-dark-grey overflow-hidden"
   >
     {children}
   </button>

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { IconButton } from '../../shared/buttons/IconButton';
-import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 import { useLocalStorage } from '../../helpers/browserApi/hooks';
+import DarkModeIcon from './assets/dark_mode.svg';
+import LightModeIcon from './assets/light_mode.svg';
+import Image from 'next/image';
 
 type Theme = 'light' | 'dark';
 
@@ -14,7 +16,7 @@ const getPreferTheme = (): Theme => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
-  } 
+  }
   return 'light';
 };
 
@@ -34,8 +36,13 @@ export function ChangeTheme({ uuid }: ChangeThemeProps) {
   };
 
   return (
-    <IconButton color='secondary' onClick={toggleThemeHandler}>
-      {theme === 'dark' ? <RiSunLine /> : <RiMoonLine />}
+    <IconButton color="secondary" onClick={toggleThemeHandler}>
+      <Image
+        src={theme === 'dark' ? 'svg/dark_mode.svg' : 'svg/light_mode.svg'}
+        width={15}
+        height={15}
+        alt="svg"
+      />
     </IconButton>
   );
 }
