@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { IconButton } from '../../shared/buttons/IconButton';
 import { useLocalStorage } from '../../helpers/browserApi/hooks';
-import DarkModeIcon from './assets/dark_mode.svg';
-import LightModeIcon from './assets/light_mode.svg';
 import Image from 'next/image';
 
 type Theme = 'light' | 'dark';
@@ -38,10 +36,11 @@ export function ChangeTheme({ uuid }: ChangeThemeProps) {
   return (
     <IconButton color="secondary" onClick={toggleThemeHandler}>
       <Image
-        src={theme === 'dark' ? 'svg/dark_mode.svg' : 'svg/light_mode.svg'}
+        src={theme === 'dark' ? 'svg/theme/dark_mode.svg' : 'svg/theme/light_mode.svg'}
         width={15}
         height={15}
-        alt="svg"
+        alt="change-theme"
+        // className="fill-light-primary dark:fill-dark-primary"
       />
     </IconButton>
   );
