@@ -5,3 +5,57 @@
 * {
   transition: background-color 200ms;
 }
+
+
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #2B3648;
+}
+::-webkit-scrollbar-track-piece { 
+  background-color: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--light-grey); 
+  border-radius: 10px;
+  border: 3px solid #FFFFFF;
+  transition: all 200ms;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-primary);
+}
+::-webkit-scrollbar-corner {
+  background: #FFFFFF;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: var(--dark-grey);  
+  border: 3px solid var(--dark-secondary);
+}
+
+html.dark ::-webkit-scrollbar-track-piece { 
+  background-color: var(--dark-secondary);
+}
+
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #212936 inset !important;
+    box-shadow: 0 0 0 30px #212936 inset !important;
+    -webkit-text-fill-color: #AFBDD1 !important;
+    border-radius: 0 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+} */

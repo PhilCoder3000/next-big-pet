@@ -1,32 +1,26 @@
 import { list } from '@keystone-6/core';
 import { allowAll } from '@keystone-6/core/access';
-import { checkbox, password, text } from '@keystone-6/core/fields';
-import { Session } from '../types';
-
-const isAdmin = ({ session }: { session: Session }) => session?.data.isAdmin;
-
-const isUser = ({ session }: { session: Session }) => !!session?.data.id;
-
-// const isPerson = ({ session, item }: { session: Session; item?: UserData }) =>
-//   session?.data.id === item?.id;
-const isPerson = ({ session, item }: any) => session?.data.id === item?.id;
-
-const isAdminOrPerson = ({ session, item }: any) =>
-  isAdmin({ session }) || isPerson({ session, item });
+import {
+  checkbox,
+  password,
+  relationship,
+  text,
+} from '@keystone-6/core/fields';
+import { isAdminOrPerson, isPerson, isUser } from './access';
 
 export const User = list({
   access: allowAll,
   fields: {
     name: text({
       validation: { isRequired: true },
-      access: allowAll,
+      // access: allowAll,
     }),
     email: text({
       validation: { isRequired: true },
       isIndexed: 'unique',
-      access: {
-        read: isAdminOrPerson,
-      },
+      // access: {
+      //   read: isAdminOrPerson,
+      // },
     }),
     password: password({ validation: { isRequired: true }, access: isPerson }),
     isAdmin: checkbox({
@@ -34,6 +28,11 @@ export const User = list({
         read: allowAll,
         update: isUser,
       },
+      // defaultValue: false,
     }),
+    // posts: relationship({
+    //   ref: 'Post.author',
+    //   many: true,
+    // }),
   },
 });

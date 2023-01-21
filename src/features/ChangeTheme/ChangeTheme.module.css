@@ -1,0 +1,31 @@
+@keyframes toDark {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: -360px 0px;
+  }
+}
+@keyframes toLight {
+  0% {
+    background-position: -360px 0px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+.change_theme_div {
+  background-image: url('./assets/sprite.svg');
+  animation-duration: 300ms;
+  animation-timing-function: steps(18);
+  animation-fill-mode: forwards;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+}
+.change_theme_div.dark {
+  animation-name: toDark;
+}
+.change_theme_div.light {
+  animation-name: toLight;
+}

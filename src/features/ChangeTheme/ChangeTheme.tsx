@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { IconButton } from '../../shared/buttons/IconButton';
 import { useLocalStorage } from '../../helpers/browserApi/hooks';
-import Image from 'next/image';
+import { classes } from '../../helpers/style/classes';
+import styles from './ChangeTheme.module.css';
 
 type Theme = 'light' | 'dark';
 
@@ -35,12 +36,18 @@ export function ChangeTheme({ uuid }: ChangeThemeProps) {
 
   return (
     <IconButton color="secondary" onClick={toggleThemeHandler}>
-      <Image
+      {/* <Image
         src={theme === 'dark' ? 'svg/theme/dark_mode.svg' : 'svg/theme/light_mode.svg'}
         width={15}
         height={15}
         alt="change-theme"
         // className="fill-light-primary dark:fill-dark-primary"
+      /> */}
+      <div
+        className={classes(styles.change_theme_div, '', {
+          [styles.dark]: theme === 'dark',
+          [styles.light]: theme === 'light',
+        })}
       />
     </IconButton>
   );

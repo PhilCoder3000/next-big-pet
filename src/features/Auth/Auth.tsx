@@ -56,18 +56,3 @@ export function Auth() {
   );
 }
 
-const logout = () => {
-  endUserSession().then((data) => {
-    window.location.reload();
-  });
-};
-
-function endUserSession() {
-  const mutation = gql`
-    mutation endUserSession {
-      endSession
-    }
-  `;
-
-  return graphqlClient.request(mutation);
-}
