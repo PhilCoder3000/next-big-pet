@@ -13,14 +13,10 @@ export const User = list({
   fields: {
     name: text({
       validation: { isRequired: true },
-      // access: allowAll,
     }),
     email: text({
       validation: { isRequired: true },
       isIndexed: 'unique',
-      // access: {
-      //   read: isAdminOrPerson,
-      // },
     }),
     password: password({ validation: { isRequired: true }, access: isPerson }),
     isAdmin: checkbox({
@@ -28,11 +24,10 @@ export const User = list({
         read: allowAll,
         update: isUser,
       },
-      // defaultValue: false,
     }),
-    // posts: relationship({
-    //   ref: 'Post.author',
-    //   many: true,
-    // }),
+    posts: relationship({
+      ref: 'Post.author',
+      many: true,
+    }),
   },
 });

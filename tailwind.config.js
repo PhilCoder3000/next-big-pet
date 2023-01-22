@@ -8,7 +8,7 @@ module.exports = {
         dark: {
           primary: 'var(--dark-primary)',
           secondary: 'var(--dark-secondary)',
-          grey: 'var(--dark-grey)'
+          grey: 'var(--dark-grey)',
         },
         light: {
           primary: 'var(--light-primary)',
@@ -20,6 +20,7 @@ module.exports = {
         dark: {
           primary: 'var(--dark-text-primary)',
           secondary: 'var(--dark-text-secondary)',
+          yellow: 'var(--dark-text-yellow)',
         },
         light: {
           primary: 'var(--light-text-primary)',

@@ -1,4 +1,5 @@
 import { gql } from 'graphql-request';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { AuthDialog } from '../../src/features/Auth/Components/AuthDialog';
 import { useLogout } from '../../src/features/Auth/hooks/useLogout';
@@ -10,6 +11,7 @@ import { BaseButton } from '../../src/shared/buttons/BaseButton';
 export default function UserPage(props: any) {
   const { request, data: user, isLoading } = useGraphQL<AuthenticatedItem>();
   const { logout } = useLogout();
+  const { push } = useRouter()
 
   useEffect(() => {
     request(gql`
@@ -30,7 +32,7 @@ export default function UserPage(props: any) {
   }
 
   if (!user?.authenticatedItem?.id) {
-    return <AuthDialog isOpen onClose={() => {}} />;
+    return <AuthDialog isOpen onClose={() => push('/')} />;
   }
 
   return (
