@@ -11,7 +11,7 @@ export default function AllPosts({ uuid }: AllPostsProps) {
   const { request, data } = useGraphQL();
   const getAllPosts = () => {
     console.log('🚀 ~ file: index.tsx:10 ~ AllPosts ~ data', data);
-    const query = gql`
+    request(gql`
       query posts(
         $where: PostWhereInput! = {}
         $orderBy: [PostOrderByInput!]! = []
@@ -26,9 +26,7 @@ export default function AllPosts({ uuid }: AllPostsProps) {
           }
         }
       }
-    `;
-  
-    request(query);
+    `);
   };
 
   return (

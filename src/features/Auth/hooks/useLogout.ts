@@ -1,21 +1,15 @@
 import { gql } from 'graphql-request';
-import { graphqlClient } from '../../../helpers/graphql/client';
+import { useGraphQL } from '../../../helpers/graphql/useGraphQL';
 
 export const useLogout = () => {
-  const logout = () => {
-    endUserSession().then((data) => {
-      window.location.reload();
-    });
-  };
-  
-  function endUserSession() {
-    const mutation = gql`
+  const { request } = useGraphQL();
+  const logout = async () => {
+    await request(gql`
       mutation endUserSession {
         endSession
       }
-    `;
-  
-    return graphqlClient.request(mutation);
-  }
-  return {logout}
-}
+    `);
+    window.location.reload();
+  };
+  return { logout };
+};

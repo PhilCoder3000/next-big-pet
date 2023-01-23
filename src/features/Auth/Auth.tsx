@@ -1,8 +1,6 @@
-import { User } from '@prisma/client';
 import { gql } from 'graphql-request';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { graphqlClient } from '../../helpers/graphql/client';
 import { useGraphQL } from '../../helpers/graphql/useGraphQL';
 import { Portal } from '../../helpers/react/Portal';
 import { LoadingButton } from '../../shared/buttons/LoadingButton';

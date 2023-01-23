@@ -1,31 +1,29 @@
 import { gql } from 'graphql-request';
-import { graphqlClient } from '../../../helpers/graphql/client';
+import { useGraphQL } from '../../../helpers/graphql/useGraphQL';
 import { SignUpUser } from '../Components/SignUpBody';
 
 export const useSignUp = (setLoading: (arg: boolean) => void) => {
-  const signUp = async (values: SignUpUser) => {
+  const { request } = useGraphQL();
+  const signUp = async ({ name, email, password }: SignUpUser) => {
     setLoading(true);
-    await registerUser(values);
-    setLoading(false)
+    await request(
+      gql`
+        mutation ($data: UserCreateInput!) {
+          createUser(data: $data) {
+            name
+          }
+        }
+      `,
+      {
+        data: {
+          isAdmin: false,
+          name,
+          email,
+          password,
+        },
+      },
+    );
+    setLoading(false);
   };
-  return { signUp }
+  return { signUp };
 };
-
-function registerUser({ name, email, password }: SignUpUser) {
-  const mutation = gql`
-    mutation ($data: UserCreateInput!) {
-      createUser(data: $data) {
-        name
-      }
-    }
-  `;
-
-  return graphqlClient.request(mutation, {
-    data: {
-      isAdmin: false,
-      name,
-      email,
-      password,
-    },
-  });
-}

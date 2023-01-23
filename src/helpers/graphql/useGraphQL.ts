@@ -4,36 +4,57 @@ import { graphqlClient } from './client';
 
 const cache = new Map<RequestDocument, Object>();
 
-export function useGraphQL<T>() {
+type UseGraphQLProps<T> = {
+  setData?: (data: T) => void;
+  setLoading?: (arg: boolean) => void;
+  cacheExpiresSec?: number;
+};
+
+export function useGraphQL<T>(props?: UseGraphQLProps<T>) {
   const abortControllerRef = useRef(new AbortController());
 
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<null | ClientError>(null);
 
+  const changeDataHandler = useCallback((data: T) => {
+    if (props && props.setData) {
+      props.setData(data);
+    } else {
+      setData(data);
+    }
+  }, [props]);
+
+  const setLoadingHandler = useCallback((isLoading: boolean) => {
+    if (props && props.setLoading) {
+      props.setLoading(isLoading);
+    }
+    setLoading(isLoading);
+  }, [props]);
+
   const request = useCallback(
     async (document: string, variables?: Variables) => {
       const inCache = cache.get(document);
       if (inCache) {
-        setData(inCache as T);
+        changeDataHandler(inCache as T);
       } else {
-        setLoading(true);
+        setLoadingHandler(true);
         try {
           const response = await graphqlClient.request({
             document,
             signal: abortControllerRef.current.signal,
             variables,
           });
-          setData(response);
+          changeDataHandler(response);
           cache.set(document, response);
         } catch (error) {
           setError(error as ClientError);
         } finally {
-          setLoading(false);
+          setLoadingHandler(false);
         }
       }
     },
-    [],
+    [changeDataHandler, setLoadingHandler],
   );
 
   useEffect(() => () => abortControllerRef.current.abort(), []);
