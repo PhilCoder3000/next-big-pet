@@ -18,6 +18,10 @@
   border-left-color: transparent;
   border-right-color: transparent;
   border-top-color: transparent;
+  border-bottom-color: var(--light-grey);
+}
+html .ldsRing div {
+  border-bottom-color: var(--dark-secondary);
 }
 .ldsRing div:nth-child(1) {
   animation-delay: -0.45s;

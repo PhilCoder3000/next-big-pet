@@ -17,17 +17,28 @@ interface IParams extends ParsedUrlQuery {
   postId: string;
 }
 
-export const getStaticProps: GetStaticProps<PostPageProps, IParams> = async (context) => {
+export const getStaticProps: GetStaticProps<PostPageProps, IParams> = async (
+  context,
+) => {
   const post = await keystoneContext.db.Post.findOne({
     where: {
       id: context.params?.postId,
     },
   });
-  return {
-    props: {
-      post,
-    },
-  };
+  if (post) {
+    return {
+      props: {
+        post,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: '/post/not-found-post',
+        permanent: false,
+      },
+    };
+  }
 };
 
 interface PostPageProps {
@@ -36,7 +47,7 @@ interface PostPageProps {
 
 export default function PostPage({ post }: PostPageProps) {
   if (!post) {
-    return <h1>post not found</h1>
+    return <h1>post not found</h1>;
   }
   const { title, content } = post;
   return (

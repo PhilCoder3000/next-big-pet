@@ -8,7 +8,7 @@ interface CircularLoaderProps {
 
 export function CircularLoader({ className }: CircularLoaderProps) {
   return (
-    <div className={classes(cls.ldsRing, '[&>div]:border-b-light-grey [&>div]:dark:border-b-dark-secondary')}>
+    <div className={classes(cls.ldsRing, className)}>
       <div></div>
       <div></div>
       <div></div>
