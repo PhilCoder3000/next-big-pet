@@ -28,15 +28,15 @@ export function useGraphQL<T>(props?: UseGraphQLProps<T>) {
   const setLoadingHandler = useCallback((isLoading: boolean) => {
     if (props && props.setLoading) {
       props.setLoading(isLoading);
+    } else {
+      setLoading(isLoading);
     }
-    setLoading(isLoading);
   }, [props]);
 
   const request = useCallback(
     async (document: string, variables?: Variables) => {
-      const inCache = cache.get(document);
-      if (inCache) {
-        changeDataHandler(inCache as T);
+      if (cache.has(document)) {
+        changeDataHandler(cache.get(document) as T);
       } else {
         setLoadingHandler(true);
         try {
