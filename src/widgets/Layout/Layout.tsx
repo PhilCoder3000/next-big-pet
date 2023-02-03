@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar } from '../NavBar';
 
-interface LayoutProps extends React.PropsWithChildren {}
+type LayoutProps = React.PropsWithChildren
 
 export function Layout({ children }: LayoutProps) {
   return (

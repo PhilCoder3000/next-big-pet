@@ -5,11 +5,7 @@ import { useWindowWidth } from '../../helpers/browser/hooks/useWindowWidth';
 import { MobileMenu } from './Components/MobileMenu';
 import { DesktopMenu } from './Components/DesktopMenu';
 
-interface NavBarProps {
-  uuid?: string;
-}
-
-export function NavBar({ uuid }: NavBarProps) {
+export function NavBar() {
   const { screen } = useWindowWidth();
   return (
     <header className="w-full py-2 flex items-center justify-end px-5 shadow-md dark:bg-dark-secondary">

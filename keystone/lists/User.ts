@@ -4,6 +4,7 @@ import {
   checkbox,
   password,
   relationship,
+  select,
   text,
 } from '@keystone-6/core/fields';
 import { isAdminOrPerson, isPerson, isUser } from './access';
@@ -28,6 +29,17 @@ export const User = list({
     posts: relationship({
       ref: 'Post.author',
       many: true,
+    }),
+    theme: select({
+      type: 'enum',
+      options: [
+        { label: 'Dark', value: 'dark' },
+        { label: 'Light', value: 'light' },
+      ],
+      defaultValue: 'light',
+      ui: {
+        displayMode: 'radio',
+      },
     }),
   },
 });

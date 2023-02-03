@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-interface MobileMenuProps {
-  uuid?: string;
-}
-
-export function MobileMenu({ uuid }: MobileMenuProps) {
+export function MobileMenu() {
   return (
     <div>
       <h1>mobile</h1>

@@ -7,35 +7,36 @@ import { LoadingButton } from '../../shared/buttons/LoadingButton';
 import { AuthDialog } from './Components/AuthDialog';
 import { AuthenticatedItem } from './types';
 
+const CheckAuthenticate = gql`
+  query authenticate {
+    authenticatedItem {
+      __typename
+      ... on User {
+        id
+        name
+        theme
+      }
+    }
+  }
+`;
+
 export function Auth() {
   const [isOpen, setOpen] = useState(false);
-  const { request, data, isLoading } = useGraphQL<AuthenticatedItem>();
-  const user = data?.authenticatedItem || null;
+  const [isLoading, setLoading] = useState();
+  // const { data, isLoading } = useGraphQL<AuthenticatedItem>();
+  // const user = data?.authenticatedItem ;
+  // const user = null;
 
-  useEffect(() => {
-    request(gql`
-      query authenticate {
-        authenticatedItem {
-          __typename
-          ... on User {
-            id
-            name
-          }
-        }
-      }
-    `);
-  }, [request]);
-
-  if (user) {
-    return (
-      <>
-        <LoadingButton isLoading={isLoading} color="primary" className="mr-3">
-          {user.name}
-        </LoadingButton>
-        <Link href={`/user/${user.id}`}>Personal page</Link>
-      </>
-    );
-  }
+  // if (user) {
+  //   return (
+  //     <>
+  //       <LoadingButton isLoading={isLoading} color="primary" className="mr-3">
+  //         {user.name}
+  //       </LoadingButton>
+  //       <Link href={`/user/${user.id}`}>Personal page</Link>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
@@ -53,4 +54,3 @@ export function Auth() {
     </>
   );
 }
-

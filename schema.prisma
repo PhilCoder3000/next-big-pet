@@ -19,6 +19,7 @@ model User {
   password String
   isAdmin  Boolean @default(false)
   posts    Post[]  @relation("Post_author")
+  theme    String? @default("light")
 }
 
 model Post {

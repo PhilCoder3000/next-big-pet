@@ -4,11 +4,7 @@ import React from 'react';
 import { classes } from '../../../helpers/style/classes';
 import { navbarLinks } from '../links';
 
-interface DesktopMenuProps {
-  uuid?: string;
-}
-
-export function DesktopMenu({ uuid }: DesktopMenuProps) {
+export function DesktopMenu() {
   const { pathname } = useRouter();
   return (
     <div className="flex flex-grow justify-start items-center">

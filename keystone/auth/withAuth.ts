@@ -4,5 +4,5 @@ export const { withAuth } = createAuth({
   listKey: 'User',
   identityField: 'email',
   secretField: 'password',
-  sessionData: 'isAdmin'
+  sessionData: 'name isAdmin'
 })
