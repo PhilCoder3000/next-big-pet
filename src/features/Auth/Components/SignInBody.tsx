@@ -10,11 +10,10 @@ import { useSignIn } from '../hooks/useSignIn';
 export type SignInUser = Pick<User, 'email' | 'password'>;
 
 export function SignInBody() {
-  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { signIn } = useSignIn(setLoading, setError);
+  const { signIn } = useSignIn(setError);
 
-  const { value, errors, changeHandler, submitHandler } = useForm<SignInUser>(
+  const { value, changeHandler, submitHandler } = useForm<SignInUser>(
     { email: '', password: '' },
     signIn,
     {

@@ -14,7 +14,7 @@ export function SignUpBody() {
 
   const { signUp } = useSignUp(setLoading)
 
-  const { value, errors, changeHandler, submitHandler } = useForm<SignUpUser>(
+  const { value, changeHandler, submitHandler } = useForm<SignUpUser>(
     {
       name: '',
       email: '',

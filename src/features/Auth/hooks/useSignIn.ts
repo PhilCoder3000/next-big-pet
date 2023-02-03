@@ -1,12 +1,14 @@
 import { gql } from 'graphql-request';
+import { useSetRecoilState } from 'recoil';
+import { userAuthData } from '../../../../store/atoms/user';
 import { useGraphQL } from '../../../helpers/graphql/useGraphQL';
 import { SignInUser } from '../Components/SignInBody';
 import { AuthenticatedItem } from '../types';
 
 export const useSignIn = (
-  setLoading: (arg: boolean) => void,
   setError: (arg: string) => void,
 ) => {
+  const setUser = useSetRecoilState(userAuthData);
   const { request } = useGraphQL<AuthenticatedItem>();
   const signIn = async ({ email, password }: SignInUser) => {
     const data = await request(
@@ -30,7 +32,12 @@ export const useSignIn = (
         password,
       },
     );
-    if (data) {
+    if ('authenticateUserWithPassword' in data) {
+      setUser((prev) => ({
+        ...prev,
+        isOpenModal: false,
+        authenticatedUser: data.authenticateUserWithPassword,
+      }));
       // if ()
       // // window.location.reload();
     } else {

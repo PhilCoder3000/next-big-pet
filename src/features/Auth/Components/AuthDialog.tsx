@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { classes } from '../../../helpers/style/classes';
-import { BaseButton } from '../../../shared/buttons/BaseButton';
-import { BaseTextField } from '../../../shared/fields/BaseTextField';
-import { PasswordTextField } from '../../../shared/fields/PasswordTextField';
 import { BaseDialog, BaseDialogProps } from '../../../shared/dialogs/BaseDialog';
 import { SignInBody } from './SignInBody';
 import { SignUpBody } from './SignUpBody';
 
-interface AuthDialogProps extends BaseDialogProps {}
+type AuthDialogProps = BaseDialogProps
 
 type Mode = 'Sign in' | 'Sign up'
 

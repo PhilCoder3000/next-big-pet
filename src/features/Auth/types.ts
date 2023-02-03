@@ -1,6 +1,7 @@
-import { User } from '@prisma/client'
+import { User } from '@prisma/client';
 
 export type AuthenticatedItem = {
-  authenticatedItem: User | null
-  authenticateUserWithPassword: User | null
-}
+  authenticatedItem: User | null;
+  authenticateUserWithPassword: User | null;
+  createUser: User | null;
+};

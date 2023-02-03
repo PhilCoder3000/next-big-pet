@@ -1,32 +1,22 @@
 import React, { useEffect } from 'react';
 import { IconButton } from '../../shared/buttons/IconButton';
-import { useLocalStorage } from '../../helpers/browser/hooks';
 import { classes } from '../../helpers/style/classes';
 import styles from './ChangeTheme.module.css';
+import { useRecoilValue } from 'recoil';
+import { userAuthData } from '../../../store/atoms/user';
 
-type Theme = 'light' | 'dark';
-
-const isClient = typeof window !== 'undefined';
-
-interface ChangeThemeProps {
-  uuid?: string;
-}
-
-export function ChangeTheme({ uuid }: ChangeThemeProps) {
-  const { item: theme, setItem: setTheme } = useLocalStorage<Theme>(
-    'color-theme',
-    'dark',
-  );
+export function ChangeTheme() {
+  const { authenticatedUser } = useRecoilValue(userAuthData);
+  const theme = authenticatedUser?.theme || 'light'
 
   useEffect(() => {
-    if (isClient) {
-      document.documentElement.removeAttribute('class');
-      document.documentElement.classList.add(theme);
-    }
+    document.documentElement.removeAttribute('class');
+    document.documentElement.classList.add(theme);
   }, [theme]);
 
-  const toggleThemeHandler = () =>
-    setTheme((prev: Theme): Theme => (prev === 'dark' ? 'light' : 'dark'));
+  const toggleThemeHandler = () => {
+    // setTheme((prev: Theme): Theme => (prev === 'dark' ? 'light' : 'dark'));
+  }
 
   return (
     <IconButton color="secondary" onClick={toggleThemeHandler}>
