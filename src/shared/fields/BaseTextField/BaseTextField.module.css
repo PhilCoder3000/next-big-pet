@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+}
+
+.label {
+  transition: all 300ms;
+}
+
+.input ~ .label {
+  position: absolute;
+  left: 0;
+  transition: all 300ms;
+  transform: translate(10px, 5px);
+}
+
+.input:focus ~ .label,
+.input:not(:placeholder-shown) ~ .label {
+  transform: translate(0px, 35px) scale(0.8);
+}

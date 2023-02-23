@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request';
 import { useSetRecoilState } from 'recoil';
-import { userAuthData } from '../../../../store/atoms/user';
+import { userAuthData } from '../../../../store/atoms/user/user';
 import { useGraphQL } from '../../../helpers/graphql/useGraphQL';
 import { SignInUser } from '../Components/SignInBody';
 import { AuthenticatedItem } from '../types';
@@ -36,10 +36,8 @@ export const useSignIn = (
       setUser((prev) => ({
         ...prev,
         isOpenModal: false,
-        authenticatedUser: data.authenticateUserWithPassword,
+        user: data.authenticateUserWithPassword,
       }));
-      // if ()
-      // // window.location.reload();
     } else {
       setError('wrong password');
     }

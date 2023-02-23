@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request';
 import { useSetRecoilState } from 'recoil';
-import { userAuthData } from '../../../../store/atoms/user';
+import { userAuthData } from '../../../../store/atoms/user/user';
 import { useGraphQL } from '../../../helpers/graphql/useGraphQL';
 import { SignUpUser } from '../Components/SignUpBody';
 import { AuthenticatedItem } from '../types';
@@ -34,7 +34,7 @@ export const useSignUp = (setLoading: (arg: boolean) => void) => {
     if ('createUser' in res) {
       setUser((prev) => ({
         ...prev,
-        authenticatedUser: res.createUser,
+        user: res.createUser,
       }));
     }
     setLoading(false);

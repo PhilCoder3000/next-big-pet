@@ -5,10 +5,7 @@ interface UserAuthData {
   isOpenModal: boolean;
   isLoading: boolean;
   mode: 'Sign in' | 'Sign up';
-  name: string;
-  email: string;
-  password: string;
-  authenticatedUser: User | null;
+  user: User | null;
 }
 
 export const userAuthData = atom<UserAuthData>({
@@ -17,9 +14,6 @@ export const userAuthData = atom<UserAuthData>({
     isOpenModal: false,
     isLoading: false,
     mode: 'Sign in',
-    name: '',
-    email: '',
-    password: '',
-    authenticatedUser: null,
+    user: null,
   },
 });

@@ -5,7 +5,7 @@ import { AuthDialog } from '../../src/features/Auth/Components/AuthDialog';
 import { useLogout } from '../../src/features/Auth/hooks/useLogout';
 import { AvatarUploader } from '../../src/shared/avatar/AvatarUploader/AvatarUploader';
 import { BaseButton } from '../../src/shared/buttons/BaseButton';
-import { userAuthData } from '../../store/atoms/user';
+import { userAuthData } from '../../store/atoms/user/user';
 
 export default function UserPage() {
   const { authenticatedUser, } = useRecoilValue(userAuthData)

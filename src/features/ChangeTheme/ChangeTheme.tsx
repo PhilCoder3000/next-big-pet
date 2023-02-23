@@ -3,7 +3,7 @@ import { IconButton } from '../../shared/buttons/IconButton';
 import { classes } from '../../helpers/style/classes';
 import styles from './ChangeTheme.module.css';
 import { useRecoilValue } from 'recoil';
-import { userAuthData } from '../../../store/atoms/user';
+import { userAuthData } from '../../../store/atoms/user/user';
 
 export function ChangeTheme() {
   const { authenticatedUser } = useRecoilValue(userAuthData);

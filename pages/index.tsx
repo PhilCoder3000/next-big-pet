@@ -1,7 +1,8 @@
 import { gql } from 'graphql-request';
-import React from 'react';
+import React, { useState } from 'react';
 import { useGraphQL } from '../src/helpers/graphql/useGraphQL';
 import { BaseButton } from '../src/shared/buttons/BaseButton';
+import { BaseTextField } from '../src/shared/fields/BaseTextField';
 
 type User = { id: string; name: string; isAdmin: boolean; email: null };
 
@@ -25,10 +26,12 @@ export default function Home() {
     `);
   }
 
+  const [value, setValue] = useState('')
 
   return (
     <div className="w-full h-full flex flex-col">
-      <BaseButton onClick={update}>update</BaseButton>
+      <BaseTextField value={value} onChange={(e) => setValue(e.target.value)} label="label" />
+      {/* <BaseButton onClick={update}>update</BaseButton> */}
       {/* <div>
         {data &&
           data.users.map(({ id, name, isAdmin }) => (

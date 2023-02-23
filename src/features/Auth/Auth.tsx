@@ -1,8 +1,9 @@
+import { User } from '@prisma/client';
 import { gql } from 'graphql-request';
 import Link from 'next/link';
 import React, { useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { userAuthData } from '../../../store/atoms/user';
+import { userAuthData } from '../../../store/atoms/user/user';
 import { useGraphQL } from '../../helpers/graphql/useGraphQL';
 import { Portal } from '../../helpers/react/Portal';
 import { LoadingButton } from '../../shared/buttons/LoadingButton';
@@ -23,12 +24,9 @@ const CheckAuthenticate = gql`
 `;
 
 export function Auth() {
-  const [{ isOpenModal, isLoading, authenticatedUser }, setAuthData] =
+  const [{ isOpenModal, isLoading, user }, setAuthData] =
     useRecoilState(userAuthData);
-  console.log(
-    '🚀 ~ file: Auth.tsx:27 ~ Auth ~ authenticatedUser',
-    authenticatedUser,
-  );
+
   const { request } = useGraphQL<AuthenticatedItem>();
 
   const checkUserAuth = useCallback(async () => {
@@ -37,14 +35,13 @@ export function Auth() {
       isLoading: true,
     }));
     const res = await request(CheckAuthenticate);
+    let authenticatedUser: User | null = null
     if ('authenticatedItem' in res) {
-      setAuthData((prev) => ({
-        ...prev,
-        authenticatedUser: res.authenticatedItem,
-      }));
+      authenticatedUser = res.authenticatedItem;
     }
     setAuthData((prev) => ({
       ...prev,
+      user: authenticatedUser,
       isLoading: false,
     }));
   }, [request, setAuthData]);
@@ -53,13 +50,13 @@ export function Auth() {
     checkUserAuth();
   }, [checkUserAuth]);
 
-  if (authenticatedUser) {
+  if (user) {
     return (
       <>
         <LoadingButton isLoading={isLoading} color="primary" className="mr-3">
-          {authenticatedUser.name}
+          {user.name}
         </LoadingButton>
-        <Link href={`/user/${authenticatedUser.id}`}>Personal page</Link>
+        <Link href={`/user/${user.id}`}>Personal page</Link>
       </>
     );
   }
